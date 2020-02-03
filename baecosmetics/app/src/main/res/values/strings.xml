@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">BaeCosmoClinic</string>
+    <string name="profile_name">Andrew W. Bae M.D.</string>
+    <string name="profile_intro"><![CDATA[Plastic & Reconstructive Surgery\nAsian Cosmetic Surgery Specialist]]></string>
+    <string name="introduction">Introduction</string>
+    <string name="contact">Contact</string>
 </resources>
