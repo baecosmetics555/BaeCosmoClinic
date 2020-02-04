@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.baecosmoclinic">
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,18 +8,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<<<<<<< HEAD
-        <activity android:name=".HomeActivity">
-=======
-        <activity android:name=".BaeProfile"></activity>
-        <activity android:name=".MainActivity">
->>>>>>> a59fabc0222c8878b50a56d8f2ebd8df478cf7d2
+
+        <activity android:name=".HomeActivity"></activity>
+
+        <activity android:name=".BaeProfile">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
+</application>
 
 </manifest>
