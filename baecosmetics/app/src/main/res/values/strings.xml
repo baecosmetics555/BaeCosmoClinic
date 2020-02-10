@@ -7,4 +7,11 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="user_signin_title">User Login</string>
+    <string name="email_address">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Sign In</string>
+    <string name="registration">Register</string>
+    <string name="sign_in">Sign In</string>
+    <string name="Register">Register</string>
 </resources>

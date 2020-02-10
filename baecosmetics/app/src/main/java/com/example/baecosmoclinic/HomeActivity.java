@@ -1,10 +1,5 @@
 package com.example.baecosmoclinic;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -15,6 +10,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 public class HomeActivity extends AppCompatActivity {
     List<Service> serviceList ;
     BottomNavigationView bottomNavigation;
@@ -22,11 +22,6 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity_main);
-
-        // bae cosmo clinic
-        //asdfsdfsa/
-        //sdfsfs
-        // auhdiahdoiaoij
 
 
         getIds();
