@@ -1,28 +1,48 @@
 package com.example.baecosmoclinic;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.douglas.baecosmoclinic.adapter.RecyclerViewAdapter;
 import com.douglas.bean.Service;
+import com.fragments.FragmentOne;
+import com.fragments.FragmentThree;
+import com.fragments.FragmentTwo;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends FragmentActivity implements FragmentOne.OnFragmentInteractionListener, FragmentTwo.OnFragmentInteractionListener, FragmentThree.OnFragmentInteractionListener {
     List<Service> serviceList ;
     BottomNavigationView bottomNavigation;
+    private static final int NUM_PAGES = 3;
+    private ViewPager mPager;
+    private PagerAdapter pagerAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity_main);
 
+        // bae cosmo clinic
+        //asdfsdfsa/
+        //sdfsfs
+        // auhdiahdoiaoij
+        mPager = (ViewPager) findViewById(R.id.pager);
+        pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
+        mPager.setAdapter(pagerAdapter);
 
         getIds();
 
@@ -76,5 +96,40 @@ public class HomeActivity extends AppCompatActivity {
     public void getIds()
     {
         bottomNavigation = findViewById(R.id.bottomNavBar);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
+
+    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
+        public ScreenSlidePagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            if(position == 0)
+            {
+                return new FragmentOne();
+            }
+            else if (position == 1)
+            {
+                return new FragmentTwo();
+            }
+            else
+            {
+                return new FragmentThree();
+
+            }
+
+        }
+
+        @Override
+        public int getCount() {
+            return NUM_PAGES;
+        }
     }
 }
