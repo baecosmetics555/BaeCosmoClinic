@@ -14,4 +14,22 @@
     <string name="registration">Register</string>
     <string name="sign_in">Sign In</string>
     <string name="Register">Register</string>
+    <string name="education">Education &amp; Training\n</string>
+    <string name="education_detail"> M.D. Saint Louis University - School of Medicine\n
+                        Residency, Plastic Surgery - UMKC/Truman Medical Center\n
+                        Fellowship, Hand Surgery - UMKC/KU\n\n
+                        Certified by The American Board of Plastic Surgery (ABPS)\n</string>
+    <string name="intro">Asian Cosmetic Surgery Specialist\n</string>
+    <string name="intro_detail">\tThe creation of an aesthetically pleasing Asian face requires thorough knowledge of the anatomy of the Asian facial skeleton as well as an appreciation of the Asian ideals of beauty.\n\n
+                \tSymmetrical eyelid crease with smooth, firmly attached skin overlying the tarsus, and mobile, loosely attached skin above the level of the crease is aesthetically appealing in Asians.\n\n
+                \tAn appreciation of the Asian concept of beauty is required in order to practice Asian cosmetic surgery. In addition to aesthetic sense of the surgeon, imagination, and creativity, training and experience in plastic and reconstructive surgery are absolute requirements.</string>
+    <string name="location">Location\n</string>
+    <string name="location_detail">BAE Cosmetic Surgery\n
+                            Asia Aesthetica\n
+                            2727 W. Olympic Bl., Suite 304\n
+                            Los Angeles, CA  90006\n</string>
+    <string name="contact_detail">Tel. (213) 384-7555\n
+                            Fax. (213) 738-8798\n</string>
+
+
 </resources>

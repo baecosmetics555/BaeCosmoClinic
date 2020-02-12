@@ -12,22 +12,21 @@
         <activity android:name=".LoginActivity">
         </activity>
         <activity android:name=".MainActivity">
-<<<<<<< HEAD
+
 
         </activity>
+
+
+
         <activity android:name=".HomeActivity">
 
         </activity>
-=======
-        </activity>
-        <activity android:name=".HomeActivity">
+
+        <activity android:name=".BaeProfile">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
->>>>>>> eea8e1a9e3a514969689d0fa0eabca21c2dfcf05
-        <activity android:name=".BaeProfile">
         </activity>
 
 </application>
