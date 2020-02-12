@@ -12,14 +12,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class LoginActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
-    private EditText email,password;
-    private Button login,registration;
+    private EditText email,password,confirmPassword;
+    private Button registration;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
@@ -35,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();//whenever user logs in, this will be called
                 if (user != null){
-                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
                     return;
@@ -45,41 +47,25 @@ public class LoginActivity extends AppCompatActivity {
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
+        confirmPassword = findViewById(R.id.confirmPasswordFromRegister);
 
-        login = findViewById(R.id.login);
         registration = findViewById(R.id.registration);
 
-//        registration.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                final String userEmail = email.getText().toString();
-//                final String userPassword = password.getText().toString();
-//                mAuth.createUserWithEmailAndPassword(userEmail,userPassword).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        if(!task.isSuccessful()){
-//                            Toast.makeText(LoginActivity.this,"Sign Up Error", Toast.LENGTH_SHORT).show();
-//                        }
-//                        else{
-//                            String userID = mAuth.getCurrentUser().getUid();
-//                            DatabaseReference currentUserDB = FirebaseDatabase.getInstance().getReference().child("Users").child("Drivers").child(userID);
-//                            currentUserDB.setValue(true);
-//                        }
-//                    }
-//                });
-//            }
-//        });
-
-        login.setOnClickListener(new View.OnClickListener() {
+        registration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final String userEmail = email.getText().toString();
                 final String userPassword = password.getText().toString();
-                mAuth.signInWithEmailAndPassword(userEmail,userPassword).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                mAuth.createUserWithEmailAndPassword(userEmail,userPassword).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(!task.isSuccessful()){
-                            Toast.makeText(LoginActivity.this,"Sign Up Error", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this,"Sign Up Error", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            String userID = mAuth.getCurrentUser().getUid();
+                            DatabaseReference currentUserDB = FirebaseDatabase.getInstance().getReference().child("Users").child("Drivers").child(userID);
+                            currentUserDB.setValue(true);
                         }
                     }
                 });
@@ -101,4 +87,3 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 }
-
