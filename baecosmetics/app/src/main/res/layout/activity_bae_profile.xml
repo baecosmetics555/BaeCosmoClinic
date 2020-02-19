@@ -53,6 +53,7 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:tabBackground="@drawable/tab_background_color_selector"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,11 +62,13 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:text="@string/introduction" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:text="@string/contact" />
 
 
@@ -74,6 +77,7 @@
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="#FFDFB9"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,8 +85,10 @@
 
         <LinearLayout
             android:id="@+id/ll"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFDFB9"
+
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -100,12 +106,13 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
+
             <TextView
                 android:id="@+id/profileTextView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"/>
+                android:layout_marginRight="20dp" />
 
             <TextView
                 android:id="@+id/profileTextView3"
@@ -114,15 +121,15 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/profileTextView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:autoLink="phone"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"/>
+                android:layout_marginRight="20dp" />
         </LinearLayout>
 
     </ScrollView>
