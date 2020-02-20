@@ -80,7 +80,7 @@ public class HomeActivity extends FragmentActivity implements FragmentOne.OnFrag
                         break;
                     case R.id.navigation_dashboard:
                         break;
-                    case R.id.navigation_notifications:
+                    case R.id.navigation_about:
                         break;
 
                 }
