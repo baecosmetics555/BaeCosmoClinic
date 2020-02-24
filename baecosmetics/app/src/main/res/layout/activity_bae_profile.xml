@@ -63,18 +63,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="@string/introduction" />
+            android:text="@string/about" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="@string/contact" />
+            android:text="@string/introduction" />
 
 
     </com.google.android.material.tabs.TabLayout>
 
     <ScrollView
+        android:id="@+id/sc"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#FFFFFF"
@@ -96,6 +97,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tabLayout"
             app:layout_constraintVertical_bias="0.0">
 
+
             <TextView
                 android:id="@+id/profileTextView1"
                 android:layout_width="match_parent"
@@ -106,12 +108,12 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-
             <TextView
                 android:id="@+id/profileTextView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp" />
 
             <TextView
@@ -119,6 +121,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -128,6 +131,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
                 android:autoLink="phone" />
         </LinearLayout>

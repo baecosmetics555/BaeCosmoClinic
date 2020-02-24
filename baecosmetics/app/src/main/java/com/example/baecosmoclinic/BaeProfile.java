@@ -1,15 +1,21 @@
 package com.example.baecosmoclinic;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 public class BaeProfile extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +30,11 @@ public class BaeProfile extends AppCompatActivity {
         final TextView tv4 = (TextView) findViewById(R.id.profileTextView4);
 
 
+
         tv1.setText(getString(R.string.education));
         tv2.setText(getString(R.string.education_detail));
-        tv3.setText(getString(R.string.intro));
-        tv4.setText(getString(R.string.intro_detail));
+        tv3.setText(getString(R.string.contact));
+        tv4.setText(getString(R.string.location_detail)+"\n"+getString(R.string.contact_detail));
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -37,17 +44,18 @@ public class BaeProfile extends AppCompatActivity {
 
                     tv1.setText(getString(R.string.education));
                     tv2.setText(getString(R.string.education_detail));
-                    tv3.setText(getString(R.string.intro));
-                    tv4.setText(getString(R.string.intro_detail));
+                    tv3.setText(getString(R.string.contact));
+                    tv4.setText(getString(R.string.location_detail)+"\n"+getString(R.string.contact_detail));
 
                 }
                 else if(tab.getPosition()==1){
 
-                    tv1.setText(getString(R.string.location));
-                    tv2.setText(getString(R.string.location_detail));
 
+                    tv1.setText(getString(R.string.intro));
+                    tv2.setText(getString(R.string.intro_detail));
                     tv3.setText("");
-                    tv4.setText(getString(R.string.contact_detail));
+                    tv4.setText("");
+
 
                 }
             }

@@ -85,6 +85,9 @@ public class HomeActivity extends FragmentActivity implements FragmentOne.OnFrag
                         break;
                     case R.id.navigation_dashboard:
                         break;
+                    case R.id.navigation_map:
+                        startActivity(new Intent(HomeActivity.this, MapsActivity.class));
+                        break;
                     case R.id.navigation_about:
                         startActivity(new Intent(HomeActivity.this, BaeProfile.class));
                         break;
