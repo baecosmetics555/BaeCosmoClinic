@@ -1,8 +1,11 @@
 package com.example.baecosmoclinic;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.douglas.baecosmoclinic.adapter.RecyclerViewAdapter;
 import com.douglas.bean.Service;
@@ -30,6 +33,7 @@ public class HomeActivity extends FragmentActivity implements FragmentOne.OnFrag
     private static final int NUM_PAGES = 3;
     private ViewPager mPager;
     private PagerAdapter pagerAdapter;
+    ImageView notification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,7 @@ public class HomeActivity extends FragmentActivity implements FragmentOne.OnFrag
         mPager.setAdapter(pagerAdapter);
 
         getIds();
+        addListeners();
 
         //#4585F3
         /*Toolbar customToolBar = findViewById(R.id.toolbar);
@@ -81,6 +86,7 @@ public class HomeActivity extends FragmentActivity implements FragmentOne.OnFrag
                     case R.id.navigation_dashboard:
                         break;
                     case R.id.navigation_about:
+                        startActivity(new Intent(HomeActivity.this, BaeProfile.class));
                         break;
 
                 }
@@ -96,6 +102,17 @@ public class HomeActivity extends FragmentActivity implements FragmentOne.OnFrag
     public void getIds()
     {
         bottomNavigation = findViewById(R.id.bottomNavBar);
+        notification = findViewById(R.id.notification);
+    }
+
+    public void addListeners()
+    {
+        notification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this, NotificationActivity.class));
+            }
+        });
     }
 
     @Override
