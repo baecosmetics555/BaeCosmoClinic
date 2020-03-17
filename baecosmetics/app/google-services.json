@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "840851619714-j8iha8ultjhr42gc3tu1el8cneh8a41e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.baecosmoclinic",
+            "certificate_hash": "0dea79accaed3595278a55bf1ff21e495824fca7"
+          }
+        },
+        {
           "client_id": "840851619714-nie1f1j8kptq134fi2nuajebu6eh4re8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

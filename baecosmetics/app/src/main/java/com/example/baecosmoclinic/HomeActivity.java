@@ -40,10 +40,7 @@ public class HomeActivity extends FragmentActivity implements FragmentOne.OnFrag
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity_main);
 
-        // bae cosmo clinic
-        //asdfsdfsa/
-        //sdfsfs
-        // auhdiahdoiaoij
+
         mPager = (ViewPager) findViewById(R.id.pager);
         pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(pagerAdapter);
@@ -108,6 +105,7 @@ public class HomeActivity extends FragmentActivity implements FragmentOne.OnFrag
         notification = findViewById(R.id.notification);
     }
 
+    // notification action
     public void addListeners()
     {
         notification.setOnClickListener(new View.OnClickListener() {
