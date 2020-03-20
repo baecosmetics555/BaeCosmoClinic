@@ -18,11 +18,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".PushNotificationActivity">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -39,23 +35,21 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"></activity>
-        <activity android:name=".NotificationActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity">
-        <intent-filter>
+        <activity android:name=".NotificationActivity">
+            <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
-    </activity>
-        <activity android:name=".HomeActivity"/>
 
-<<<<<<< HEAD
-
-=======
         </activity>
->>>>>>> d10ac6a58b0c1cbfe0d3360d7c50e9f2e3a3e27c
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".MainActivity">
+
+    </activity>
+        <activity android:name=".HomeActivity"> </activity>
+
         <activity android:name=".BaeProfile" />
     </application>
 
