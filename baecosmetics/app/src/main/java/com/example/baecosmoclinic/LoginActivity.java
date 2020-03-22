@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText email,password;
     private Button login,registration;
+    private TextView invalidLogin;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
@@ -48,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
 
         login = findViewById(R.id.login);
         registration = findViewById(R.id.registration);
+        invalidLogin = findViewById(R.id.invalidLoginText);
 
 //        registration.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -79,10 +82,21 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(!task.isSuccessful()){
+                            invalidLogin.setText("Please enter a valid email or password. \nIf you are a new user, please register");
                             Toast.makeText(LoginActivity.this,"Sign In Error", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+            }
+        });
+
+        registration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+                //finish();
+                return;
             }
         });
 
