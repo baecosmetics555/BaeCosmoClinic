@@ -88,6 +88,9 @@ public class HomeActivity extends FragmentActivity implements FragmentOne.OnFrag
                     case R.id.navigation_about:
                         startActivity(new Intent(HomeActivity.this, BaeProfile.class));
                         break;
+                    case R.id.navigation_account:
+                        startActivity(new Intent(HomeActivity.this,UserProfile.class));
+                        break;
 
                 }
 

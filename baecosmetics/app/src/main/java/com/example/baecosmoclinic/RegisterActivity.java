@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText email,password,confirmPassword;
     private Button registration;
     private TextView validationText;
+    private RelativeLayout relativeLayout;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
@@ -55,6 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
         confirmPassword = findViewById(R.id.confirmPasswordFromRegister);
         registration = findViewById(R.id.registration);
         validationText = findViewById(R.id.invalidRegisterText);
+        relativeLayout = findViewById(R.id.relativeLayout);
 
         registration.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,10 +79,20 @@ public class RegisterActivity extends AppCompatActivity {
                                 if (!task.isSuccessful()) {
                                     Toast.makeText(RegisterActivity.this, "Sign Up Error", Toast.LENGTH_SHORT).show();
                                 }
-                                Toast.makeText(RegisterActivity.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
-                                validationText.setText("Registration successful. Go back to login page to login");
-                                validationText.setTextColor(Color.GREEN);
-
+                                else {
+                                    //Toast.makeText(RegisterActivity.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+                                    validationText.setText("Registration successful. Go back to login page to login");
+                                    validationText.setTextColor(Color.GREEN);
+//                                    RelativeLayout.LayoutParams newParams = new RelativeLayout.LayoutParams(
+//                                            RelativeLayout.LayoutParams.WRAP_CONTENT,
+//                                            RelativeLayout.LayoutParams.WRAP_CONTENT);
+//                                    Button tv2 = new Button(Button.this);
+//                                    tv2.setText("Hello2");
+//                                    newParams.addRule(RelativeLayout.ABOVE);
+//                                    tv2.setLayoutParams(newParams);
+//                                    tv2.setId(2);
+//                                    relativeLayout.addView(tv2);
+                                }
 //                          else {
 //                          String userID = mAuth.getCurrentUser().getUid();
 //                          DatabaseReference currentUserDB = FirebaseDatabase.getInstance().getReference().child("Users").child("Customers").child(userID);
@@ -87,8 +100,12 @@ public class RegisterActivity extends AppCompatActivity {
 //                          }
                             }
                         });
-                    } else
-                        Toast.makeText(RegisterActivity.this, "Passwords don't match!", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        //Toast.makeText(RegisterActivity.this, "Passwords don't match!", Toast.LENGTH_SHORT).show();
+                        validationText.setText("Passwords don't match!");
+                        validationText.setTextColor(Color.RED);
+                    }
                 }
             }
         });
