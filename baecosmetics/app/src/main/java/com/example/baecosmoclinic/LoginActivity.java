@@ -78,15 +78,27 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 final String userEmail = email.getText().toString();
                 final String userPassword = password.getText().toString();
-                mAuth.signInWithEmailAndPassword(userEmail,userPassword).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(!task.isSuccessful()){
-                            invalidLogin.setText("Please enter a valid email or password. \nIf you are a new user, please register");
-                            Toast.makeText(LoginActivity.this,"Sign In Error", Toast.LENGTH_SHORT).show();
+                if (userEmail.isEmpty() || userPassword.isEmpty()) {
+                    invalidLogin.setText("Please fill all required fields.");
+                }
+                else {
+                    mAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (!task.isSuccessful()) {
+                                invalidLogin.setText("Please enter a valid email or password. \nIf you are a new user, please register");
+                                Toast.makeText(LoginActivity.this, "Sign In Error", Toast.LENGTH_SHORT).show();
+                            } else {
+                                if ((userEmail.equals("admin@admin.com")) && (userPassword.equals("123456"))) {
+                                    Intent intent = new Intent(LoginActivity.this, AdminHomeActivity.class); //Create AdminHomeActivity for Admin Account
+                                    startActivity(intent);
+                                    finish();
+                                    return;
+                                }
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
         });
 

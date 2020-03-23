@@ -1,9 +1,11 @@
 package com.example.baecosmoclinic;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,6 +21,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private EditText email,password,confirmPassword;
     private Button registration;
+    private TextView validationText;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
@@ -51,6 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
         password = findViewById(R.id.passwordFromRegister);
         confirmPassword = findViewById(R.id.confirmPasswordFromRegister);
         registration = findViewById(R.id.registration);
+        validationText = findViewById(R.id.invalidRegisterText);
 
         registration.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,27 +62,34 @@ public class RegisterActivity extends AppCompatActivity {
                 final String userEmail = email.getText().toString();
                 final String userPassword = password.getText().toString();
                 final String userConfirmPassword = confirmPassword.getText().toString();
-                if (userPassword.equals(userConfirmPassword)) {
-                    mAuth.createUserWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                if (userEmail.isEmpty() || userPassword.isEmpty() || userConfirmPassword.isEmpty())
+                {
+                    validationText.setText("Please fill all required fields.");
+                }
+                else{
+                    if (userPassword.equals(userConfirmPassword)) {
+                        mAuth.createUserWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
 
 
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (!task.isSuccessful()) {
-                                Toast.makeText(RegisterActivity.this, "Sign Up Error", Toast.LENGTH_SHORT).show();
-                            }
-                            Toast.makeText(RegisterActivity.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (!task.isSuccessful()) {
+                                    Toast.makeText(RegisterActivity.this, "Sign Up Error", Toast.LENGTH_SHORT).show();
+                                }
+                                Toast.makeText(RegisterActivity.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+                                validationText.setText("Registration successful. Go back to login page to login");
+                                validationText.setTextColor(Color.GREEN);
 
 //                          else {
 //                          String userID = mAuth.getCurrentUser().getUid();
 //                          DatabaseReference currentUserDB = FirebaseDatabase.getInstance().getReference().child("Users").child("Customers").child(userID);
 //                          currentUserDB.setValue(true);
 //                          }
-                        }
-                    });
+                            }
+                        });
+                    } else
+                        Toast.makeText(RegisterActivity.this, "Passwords don't match!", Toast.LENGTH_SHORT).show();
                 }
-                else
-                    Toast.makeText(RegisterActivity.this, "Passwords don't match!", Toast.LENGTH_SHORT).show();
             }
         });
 
