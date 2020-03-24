@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.douglas.baecosmoclinic.adapter.RecyclerViewAdapter;
+import com.douglas.baecosmoclinic.adapter.ScheduleRecyclerAdapter;
 import com.douglas.bean.Service;
 import com.fragments.FragmentOne;
 import com.fragments.FragmentThree;
@@ -84,6 +85,7 @@ public class HomeActivity extends FragmentActivity implements FragmentOne.OnFrag
                     case R.id.navigation_home:
                         break;
                     case R.id.navigation_dashboard:
+                        startActivity(new Intent(HomeActivity.this, ScheduleActivity.class));
                         break;
                     case R.id.navigation_map:
                         startActivity(new Intent(HomeActivity.this, MapsActivity.class));
