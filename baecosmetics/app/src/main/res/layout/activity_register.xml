@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
+    android:id="@+id/relativeLayout"
     android:orientation="vertical">
 
     <EditText
@@ -19,6 +20,7 @@
 
     <EditText
         android:id="@+id/passwordFromRegister"
+        android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/confirmPasswordFromRegister"
@@ -27,12 +29,25 @@
 
     <EditText
         android:id="@+id/confirmPasswordFromRegister"
+        android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/registration"
+        android:layout_above="@+id/invalidRegisterText"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="32dp"
         android:hint="Confirm Password" />
+
+    <TextView
+        android:id="@+id/invalidRegisterText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/registration"
+        android:layout_marginBottom="32dp"
+        android:layout_centerHorizontal="true"
+        android:textColor="#FF0000"
+        android:textStyle="bold"
+        android:text=""
+        />
 
     <Button
         android:id="@+id/registration"
