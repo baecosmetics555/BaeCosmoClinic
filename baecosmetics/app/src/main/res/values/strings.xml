@@ -25,6 +25,7 @@
     <string name="location_detail">BAE Cosmetic Surgery\nAsia Aesthetica\n2727 W. Olympic Bl., Suite 304\nLos Angeles, CA  90006\n</string>
     <string name="contact_detail">Tel. (213) 384-7555\nFax. (213) 738-8798\n</string>
     <string name="title_activity_maps">Map</string>
+    <string name="btnPush">Send Notification</string>
 
 
 </resources>

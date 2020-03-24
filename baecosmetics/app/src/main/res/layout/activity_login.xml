@@ -11,7 +11,8 @@
 
     <EditText
         android:id="@+id/email"
-        android:layout_width="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/password"
         android:layout_marginBottom="29dp"
@@ -19,11 +20,25 @@
 
     <EditText
         android:id="@+id/password"
-        android:layout_width="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_width="250dp"
+        android:inputType="textPassword"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/invalidLoginText"
+        android:layout_marginBottom="32dp"
+        android:hint="Password" />
+
+    <TextView
+        android:id="@+id/invalidLoginText"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/login"
         android:layout_marginBottom="32dp"
-        android:hint="Password" />
+        android:layout_centerHorizontal="true"
+        android:textColor="#FF0000"
+        android:textStyle="bold"
+        android:text=""
+        />
 
     <Button
         android:id="@+id/login"
@@ -38,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="68dp"
+        android:layout_marginBottom="48dp"
         android:text="Register" />
 
 </RelativeLayout>

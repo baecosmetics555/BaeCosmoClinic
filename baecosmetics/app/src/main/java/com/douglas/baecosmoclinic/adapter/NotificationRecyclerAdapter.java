@@ -4,8 +4,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.douglas.bean.NotificationList;
 import com.douglas.bean.Service;
 import com.example.baecosmoclinic.R;
 
@@ -21,10 +23,11 @@ import androidx.recyclerview.widget.RecyclerView;
 public class NotificationRecyclerAdapter extends RecyclerView.Adapter<NotificationRecyclerAdapter.MyViewHolder> {
 
     private Context mContext ;
-    private List<Service> mData ;
+    private List<NotificationList> mData;
+    private int nImg = R.drawable.bell;
 
 
-    public NotificationRecyclerAdapter(Context mContext, List<Service> mData) {
+    public NotificationRecyclerAdapter(Context mContext, List<NotificationList> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
@@ -42,9 +45,9 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
 
-        holder.txtViewItem.setText(mData.get(position).getTitle());
+        holder.txtViewItem.setText(mData.get(position).getDescription());
         holder.txtViewItemId.setText(mData.get(position).getTitle());
-
+        holder.img.setImageResource(nImg);
 
 
      //   holder.txtService.setText(mData.get(position).getTitle());
@@ -77,12 +80,14 @@ public class NotificationRecyclerAdapter extends RecyclerView.Adapter<Notificati
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView txtViewItem, txtViewItemId;
+        ImageView img;
         CardView cardView;
 
         public MyViewHolder(View view) {
             super(view);
             txtViewItem = (TextView) view.findViewById(R.id.txtViewItem);
             txtViewItemId = (TextView) view.findViewById(R.id.txtViewItemId);
+            img = (ImageView) view.findViewById(R.id.imgViewForNotification);
             cardView = (CardView) view.findViewById(R.id.card_view);
         }
     }

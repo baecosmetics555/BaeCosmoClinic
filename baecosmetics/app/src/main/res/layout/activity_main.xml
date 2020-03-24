@@ -31,6 +31,15 @@
         android:layout_marginBottom="129dp"
         android:text="@string/Register" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btn_sign_in"
+        android:layout_margin="100dp"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/baecosmologo" />
+
 
 </RelativeLayout>
 
