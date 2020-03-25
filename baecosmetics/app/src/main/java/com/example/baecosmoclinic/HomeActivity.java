@@ -6,14 +6,25 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.douglas.baecosmoclinic.adapter.NotificationRecyclerAdapter;
 import com.douglas.baecosmoclinic.adapter.RecyclerViewAdapter;
 import com.douglas.baecosmoclinic.adapter.ScheduleRecyclerAdapter;
+import com.douglas.bean.NotificationList;
 import com.douglas.bean.Service;
+import com.douglas.bean.ServiceCategory;
+import com.douglas.bean.ServiceDetail;
 import com.fragments.FragmentOne;
 import com.fragments.FragmentThree;
 import com.fragments.FragmentTwo;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,17 +35,22 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 public class HomeActivity extends FragmentActivity implements FragmentOne.OnFragmentInteractionListener, FragmentTwo.OnFragmentInteractionListener, FragmentThree.OnFragmentInteractionListener {
-    List<Service> serviceList ;
+    List<ServiceDetail> serviceList;
+    List<ServiceCategory> serviceCategory;
     BottomNavigationView bottomNavigation;
     private static final int NUM_PAGES = 3;
     private ViewPager mPager;
     private PagerAdapter pagerAdapter;
     ImageView notification;
+    RecyclerView recyclerView;
+
+    DatabaseReference db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,30 +65,56 @@ public class HomeActivity extends FragmentActivity implements FragmentOne.OnFrag
         getIds();
         addListeners();
 
-        //#4585F3
-        /*Toolbar customToolBar = findViewById(R.id.toolbar);
-        customToolBar.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));*/
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         serviceList = new ArrayList<>();
-        serviceList.add(new Service("The Vegitarian","Categorie Service","Description book",R.drawable.thevigitarian));
-        serviceList.add(new Service("The Wild Robot","Categorie Service","Description book",R.drawable.thewildrobot));
-        serviceList.add(new Service("Maria Semples","Categorie Service","Description book",R.drawable.mariasemples));
-        serviceList.add(new Service("The Martian","Categorie Service","Description book",R.drawable.themartian));
-        serviceList.add(new Service("He Died with...","Categorie Service","Description book",R.drawable.hediedwith));
-        serviceList.add(new Service("The Vegitarian","Categorie Service","Description book",R.drawable.thevigitarian));
-        serviceList.add(new Service("The Wild Robot","Categorie Service","Description book",R.drawable.thewildrobot));
-        serviceList.add(new Service("Maria Semples","Categorie Service","Description book",R.drawable.mariasemples));
-        serviceList.add(new Service("The Martian","Categorie Service","Description book",R.drawable.themartian));
-        serviceList.add(new Service("He Died with...","Categorie Service","Description book",R.drawable.hediedwith));
-        serviceList.add(new Service("The Vegitarian","Categorie Service","Description book",R.drawable.thevigitarian));
-        serviceList.add(new Service("The Wild Robot","Categorie Service","Description book",R.drawable.thewildrobot));
-        serviceList.add(new Service("Maria Semples","Categorie Service","Description book",R.drawable.mariasemples));
-        serviceList.add(new Service("The Martian","Categorie Service","Description book",R.drawable.themartian));
-        serviceList.add(new Service("He Died with...","Categorie Service","Description book",R.drawable.hediedwith));
+        serviceCategory = new ArrayList<>();
 
-        RecyclerView myrv = (RecyclerView) findViewById(R.id.recyclerView);
-        RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this,serviceList);
-        myrv.setLayoutManager(new GridLayoutManager(this,3));
-        myrv.setAdapter(myAdapter);
+        db = FirebaseDatabase.getInstance().getReference().child("Service");
+
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    final String category= snapshot.getKey();
+
+
+                    db.child(category).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for (DataSnapshot snapshot2 : dataSnapshot.getChildren()) {
+
+                                String title = snapshot2.child("title").getValue(String.class);
+                                String thumbnail = snapshot2.child("url").getValue(String.class);
+                                serviceList.add(new ServiceDetail(title,category,"Description",thumbnail));
+
+                                if(thumbnail!=null) {
+                                    serviceCategory.add(new ServiceCategory(category,thumbnail));
+                                }
+                                //
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+
+                }
+
+                RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(HomeActivity.this, serviceCategory);
+                recyclerView.setLayoutManager(new GridLayoutManager(HomeActivity.this,2));
+                recyclerView.setAdapter(myAdapter);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

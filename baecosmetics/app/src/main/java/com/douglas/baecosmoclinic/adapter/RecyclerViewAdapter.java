@@ -8,7 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.douglas.bean.Service;
+import com.douglas.bean.ServiceCategory;
+import com.douglas.bean.ServiceDetail;
 import com.example.baecosmoclinic.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -22,10 +25,10 @@ import androidx.recyclerview.widget.RecyclerView;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
     private Context mContext ;
-    private List<Service> mData ;
+    private List<ServiceCategory> mData ;
 
 
-    public RecyclerViewAdapter(Context mContext, List<Service> mData) {
+    public RecyclerViewAdapter(Context mContext, List<ServiceCategory> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
@@ -42,23 +45,32 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
 
+        holder.txtService.setText(mData.get(position).getCategory());
+        Picasso.get().load(mData.get(position).getThumbnail()).into(holder.imgService);
+
+
+
+
+        /*
         holder.txtService.setText(mData.get(position).getTitle());
         holder.imgService.setImageResource(mData.get(position).getThumbnail());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-               /* Intent intent = new Intent(mContext,Book_Activity.class);
+                Intent intent = new Intent(mContext,Book_Activity.class);
 
                 // passing data to the book activity
                 intent.putExtra("Title",mData.get(position).getTitle());
                 intent.putExtra("Description",mData.get(position).getDescription());
                 intent.putExtra("Thumbnail",mData.get(position).getThumbnail());
                 // start the activity
-                mContext.startActivity(intent);*/
+                mContext.startActivity(intent);
 
             }
-        });
+
+
+        });*/
 
 
 

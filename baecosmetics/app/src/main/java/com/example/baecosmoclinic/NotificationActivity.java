@@ -26,7 +26,6 @@ import java.util.List;
 public class NotificationActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    List<Service> serviceList;
     List<NotificationList>  listOfNotification;
     DatabaseReference db;
 
@@ -35,33 +34,7 @@ public class NotificationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
 
-
-      //  getIds();
-
-        serviceList = new ArrayList<>();
-        serviceList.add(new Service("Notification 1","Categorie Service","Description book",R.drawable.thevigitarian));
-        serviceList.add(new Service("Notification 2","Categorie Service","Description book",R.drawable.thewildrobot));
-        serviceList.add(new Service("Notification 3","Categorie Service","Description book",R.drawable.mariasemples));
-        serviceList.add(new Service("Notification 4","Categorie Service","Description book",R.drawable.themartian));
-        serviceList.add(new Service("Notification 5","Categorie Service","Description book",R.drawable.hediedwith));
-        serviceList.add(new Service("Notification 6","Categorie Service","Description book",R.drawable.thevigitarian));
-        serviceList.add(new Service("The Wild Robot","Categorie Service","Description book",R.drawable.thewildrobot));
-        serviceList.add(new Service("Maria Semples","Categorie Service","Description book",R.drawable.mariasemples));
-        serviceList.add(new Service("The Martian","Categorie Service","Description book",R.drawable.themartian));
-        serviceList.add(new Service("He Died with...","Categorie Service","Description book",R.drawable.hediedwith));
-        serviceList.add(new Service("The Vegitarian","Categorie Service","Description book",R.drawable.thevigitarian));
-        serviceList.add(new Service("The Wild Robot","Categorie Service","Description book",R.drawable.thewildrobot));
-        serviceList.add(new Service("Maria Semples","Categorie Service","Description book",R.drawable.mariasemples));
-        serviceList.add(new Service("The Martian","Categorie Service","Description book",R.drawable.themartian));
-        serviceList.add(new Service("He Died with...","Categorie Service","Description book",R.drawable.hediedwith));
-
         recyclerView = findViewById(R.id.recyclerView);
-        //NotificationRecyclerAdapter myAdapter = new NotificationRecyclerAdapter(this,serviceList);
-      //  recyclerView.setLayoutManager(new LinearLayoutManager(this));
-       // recyclerView.setAdapter(myAdapter);
-
-
-
 
         db = FirebaseDatabase.getInstance().getReference().child("notification");
 
