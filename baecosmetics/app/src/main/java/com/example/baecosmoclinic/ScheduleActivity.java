@@ -80,6 +80,8 @@ public class ScheduleActivity extends AppCompatActivity {
 
 
                     initTab1();
+                    btnBookIt.setVisibility(View.GONE);
+
                 }
                 else if(tab.getPosition()==1){
 
@@ -91,6 +93,8 @@ public class ScheduleActivity extends AppCompatActivity {
 
                     btnGetTime.setVisibility(View.VISIBLE);
                     tvwTime.setVisibility(View.VISIBLE);
+
+                    btnBookIt.setVisibility(View.VISIBLE);
 
 
                 }
