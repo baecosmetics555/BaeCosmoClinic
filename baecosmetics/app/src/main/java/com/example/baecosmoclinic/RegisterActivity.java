@@ -1,5 +1,6 @@
 package com.example.baecosmoclinic;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -40,9 +41,9 @@ public class RegisterActivity extends AppCompatActivity {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();//whenever user logs in, this will be called
                 if (user != null){
                     mAuth.signOut();
-//                    Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
-//                    startActivity(intent);
-//                    finish();
+                    Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
                     return;
                 }
                 else
