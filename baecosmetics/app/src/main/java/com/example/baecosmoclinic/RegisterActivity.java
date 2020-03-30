@@ -70,6 +70,8 @@ public class RegisterActivity extends AppCompatActivity {
                 {
                     validationText.setText("Please fill all required fields.");
                 }
+                else if(userPassword.trim().length()<6)
+                {validationText.setText("Please enter a password of at least 6 characters.");}
                 else{
                     if (userPassword.equals(userConfirmPassword)) {
                         mAuth.createUserWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
