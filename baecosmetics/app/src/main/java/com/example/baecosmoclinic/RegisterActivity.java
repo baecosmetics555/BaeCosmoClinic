@@ -1,5 +1,6 @@
 package com.example.baecosmoclinic;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -37,10 +38,17 @@ public class RegisterActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();//whenever user logs in, this will be called
                 if (user != null){
                     mAuth.signOut();
+<<<<<<< HEAD
 //                    Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
 //                    startActivity(intent);
 //                    finish();
                     //return;
+=======
+                    Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return;
+>>>>>>> 081ea3e7ed574e0131b49f87a1eeaad4cf9213ab
                 }
 
 //        firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -81,6 +89,8 @@ public class RegisterActivity extends AppCompatActivity {
                 {
                     validationText.setText("Please fill all required fields.");
                 }
+                else if(userPassword.trim().length()<6)
+                {validationText.setText("Please enter a password of at least 6 characters.");}
                 else{
                     if (userPassword.equals(userConfirmPassword)) {
                         mAuth.createUserWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {

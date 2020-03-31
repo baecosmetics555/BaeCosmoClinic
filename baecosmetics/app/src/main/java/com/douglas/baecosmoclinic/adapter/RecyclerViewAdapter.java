@@ -1,6 +1,7 @@
 package com.douglas.baecosmoclinic.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import com.douglas.bean.Service;
 import com.douglas.bean.ServiceCategory;
 import com.douglas.bean.ServiceDetail;
 import com.example.baecosmoclinic.R;
+import com.example.baecosmoclinic.ServiceDetailActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -48,29 +50,22 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.txtService.setText(mData.get(position).getCategory());
         Picasso.get().load(mData.get(position).getThumbnail()).into(holder.imgService);
 
-
-
-
-        /*
-        holder.txtService.setText(mData.get(position).getTitle());
-        holder.imgService.setImageResource(mData.get(position).getThumbnail());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(mContext,Book_Activity.class);
+                Intent intent = new Intent(mContext, ServiceDetailActivity.class);
 
                 // passing data to the book activity
-                intent.putExtra("Title",mData.get(position).getTitle());
-                intent.putExtra("Description",mData.get(position).getDescription());
-                intent.putExtra("Thumbnail",mData.get(position).getThumbnail());
+                intent.putExtra("Category",mData.get(position).getCategory());
+
                 // start the activity
                 mContext.startActivity(intent);
 
             }
 
 
-        });*/
+        });
 
 
 
