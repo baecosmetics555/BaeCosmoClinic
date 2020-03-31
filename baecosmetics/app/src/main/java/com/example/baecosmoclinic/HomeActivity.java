@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -33,15 +34,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-public class HomeActivity extends FragmentActivity implements FragmentOne.OnFragmentInteractionListener, FragmentTwo.OnFragmentInteractionListener, FragmentThree.OnFragmentInteractionListener {
+public class HomeActivity  extends AppCompatActivity {
     List<ServiceDetail> serviceList;
     List<ServiceCategory> serviceCategory;
     BottomNavigationView bottomNavigation;
-    private static final int NUM_PAGES = 3;
-    private ViewPager mPager;
-    private PagerAdapter pagerAdapter;
+
     ImageView notification;
     RecyclerView recyclerView;
+
+    ImageView homeImage;
 
     DatabaseReference db;
 
@@ -51,16 +52,15 @@ public class HomeActivity extends FragmentActivity implements FragmentOne.OnFrag
         setContentView(R.layout.home_activity_main);
 
 
-        mPager = (ViewPager) findViewById(R.id.pager);
-        pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
-        mPager.setAdapter(pagerAdapter);
 
         getIds();
         addListeners();
+        getHomeImage();
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         serviceList = new ArrayList<>();
         serviceCategory = new ArrayList<>();
+
 
         db = FirebaseDatabase.getInstance().getReference().child("Service");
 
@@ -78,7 +78,13 @@ public class HomeActivity extends FragmentActivity implements FragmentOne.OnFrag
 
                                 String title = snapshot2.child("title").getValue(String.class);
                                 String thumbnail = snapshot2.child("url").getValue(String.class);
-                                serviceList.add(new ServiceDetail(title,category,"Description",thumbnail));
+                                String description = "";
+                                if(snapshot2.child("description").exists()){
+                                    description = snapshot2.child("description").getValue(String.class);
+                                }else {
+                                    description = ""; }
+
+                                serviceList.add(new ServiceDetail(title,category,description,thumbnail));
 
                                 if(thumbnail!=null) {
                                     serviceCategory.add(new ServiceCategory(category,thumbnail));
@@ -98,7 +104,7 @@ public class HomeActivity extends FragmentActivity implements FragmentOne.OnFrag
                 }
 
                 RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(HomeActivity.this, serviceCategory);
-                recyclerView.setLayoutManager(new GridLayoutManager(HomeActivity.this,2));
+                recyclerView.setLayoutManager(new GridLayoutManager(HomeActivity.this,3));
                 recyclerView.setAdapter(myAdapter);
 
             }
@@ -139,6 +145,22 @@ public class HomeActivity extends FragmentActivity implements FragmentOne.OnFrag
 
     }
 
+    private void getHomeImage() {
+        homeImage = (ImageView) findViewById(R.id.displayProduct);
+        homeImage.setImageResource(R.drawable.baeproduct);
+
+        homeImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("https://www.benebiomecosmetics.com/"));
+                startActivity(intent);
+            }
+        });
+    }
+
     public void getIds()
     {
         bottomNavigation = findViewById(R.id.bottomNavBar);
@@ -156,38 +178,4 @@ public class HomeActivity extends FragmentActivity implements FragmentOne.OnFrag
         });
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
-
-
-    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-        public ScreenSlidePagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            if(position == 0)
-            {
-                return new FragmentOne();
-            }
-            else if (position == 1)
-            {
-                return new FragmentTwo();
-            }
-            else
-            {
-                return new FragmentThree();
-
-            }
-
-        }
-
-        @Override
-        public int getCount() {
-            return NUM_PAGES;
-        }
-    }
 }
