@@ -21,6 +21,7 @@ import com.fragments.FragmentTwo;
 public class MainActivity  extends FragmentActivity implements FragmentOne.OnFragmentInteractionListener, FragmentTwo.OnFragmentInteractionListener, FragmentThree.OnFragmentInteractionListener {
 
     private Button login,register;
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     private static final int NUM_PAGES = 3;
     private ViewPager mPager;
