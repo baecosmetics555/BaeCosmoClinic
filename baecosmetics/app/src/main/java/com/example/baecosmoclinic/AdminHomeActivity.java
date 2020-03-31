@@ -3,6 +3,7 @@ package com.example.baecosmoclinic;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -15,6 +16,8 @@ public class AdminHomeActivity extends AppCompatActivity {
     private ImageView logout;
 
     private FirebaseAuth mAuth;
+
+    Button postSchedule, viewAppointments, postNotitification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,29 @@ public class AdminHomeActivity extends AppCompatActivity {
                     return;
                 }
                 //mAuth.signOut();
+            }
+        });
+
+        getIds();
+        setListeners();
+    }
+
+
+  public void getIds()
+    {
+        viewAppointments = findViewById(R.id.viewAppointments);
+        postSchedule = findViewById(R.id.postSchedule);
+        postNotitification = findViewById(R.id.sendNotifications);
+    }
+
+    public void setListeners(){
+
+        viewAppointments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(AdminHomeActivity.this, ViewAppointmentsActivity.class));
+
             }
         });
     }
