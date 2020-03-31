@@ -27,7 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
     private RelativeLayout relativeLayout;
 
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener firebaseAuthListener;
+    //private FirebaseAuth.AuthStateListener firebaseAuthListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,23 +35,39 @@ public class RegisterActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance(); // get current state of the login state
 
-        firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();//whenever user logs in, this will be called
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();//whenever user logs in, this will be called
                 if (user != null){
                     mAuth.signOut();
+
+//                    Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+//                    startActivity(intent);
+//                    finish();
+                    //return;
+
                     Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
                     startActivity(intent);
                     finish();
                     return;
-                }
-                else
-                {
 
                 }
-            }
-        };
+
+//        firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
+//            @Override
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();//whenever user logs in, this will be called
+//                if (user != null){
+//                    mAuth.signOut();
+////                    Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+////                    startActivity(intent);
+////                    finish();
+//                    //return;
+//                }
+//                else
+//                {
+//
+//                }
+//            }
+//        };
 
         email = findViewById(R.id.emailFromRegister);
         password = findViewById(R.id.passwordFromRegister);
@@ -59,6 +75,9 @@ public class RegisterActivity extends AppCompatActivity {
         registration = findViewById(R.id.registration);
         validationText = findViewById(R.id.invalidRegisterText);
         relativeLayout = findViewById(R.id.relativeLayout);
+
+
+
 
         registration.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,26 +94,18 @@ public class RegisterActivity extends AppCompatActivity {
                 else{
                     if (userPassword.equals(userConfirmPassword)) {
                         mAuth.createUserWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
-
-
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (!task.isSuccessful()) {
-                                    Toast.makeText(RegisterActivity.this, "Sign Up Error", Toast.LENGTH_SHORT).show();
+                                    validationText.setText(""+task.getException().getMessage());
+                                    Toast.makeText(RegisterActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                    System.out.println("==================="+task.getException());
                                 }
                                 else {
-                                    //Toast.makeText(RegisterActivity.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(RegisterActivity.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+                                    mAuth.signOut();
                                     validationText.setText("Registration successful. Go back to login page to login");
                                     validationText.setTextColor(Color.GREEN);
-//                                    RelativeLayout.LayoutParams newParams = new RelativeLayout.LayoutParams(
-//                                            RelativeLayout.LayoutParams.WRAP_CONTENT,
-//                                            RelativeLayout.LayoutParams.WRAP_CONTENT);
-//                                    Button tv2 = new Button(Button.this);
-//                                    tv2.setText("Hello2");
-//                                    newParams.addRule(RelativeLayout.ABOVE);
-//                                    tv2.setLayoutParams(newParams);
-//                                    tv2.setId(2);
-//                                    relativeLayout.addView(tv2);
                                 }
 //                          else {
 //                          String userID = mAuth.getCurrentUser().getUid();
@@ -105,7 +116,7 @@ public class RegisterActivity extends AppCompatActivity {
                         });
                     }
                     else {
-                        //Toast.makeText(RegisterActivity.this, "Passwords don't match!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, "Passwords don't match!", Toast.LENGTH_SHORT).show();
                         validationText.setText("Passwords don't match!");
                         validationText.setTextColor(Color.RED);
                     }
@@ -120,13 +131,13 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        mAuth.addAuthStateListener(firebaseAuthListener);
+        //mAuth.addAuthStateListener(firebaseAuthListener);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mAuth.removeAuthStateListener(firebaseAuthListener);
+        //mAuth.removeAuthStateListener(firebaseAuthListener);
 
     }
 }

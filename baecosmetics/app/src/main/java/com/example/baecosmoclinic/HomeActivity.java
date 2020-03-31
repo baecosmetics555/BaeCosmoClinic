@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.douglas.baecosmoclinic.adapter.RecyclerViewAdapter;
 import com.douglas.bean.ServiceCategory;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -33,16 +35,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-public class HomeActivity extends FragmentActivity implements FragmentOne.OnFragmentInteractionListener, FragmentTwo.OnFragmentInteractionListener, FragmentThree.OnFragmentInteractionListener {
+public class HomeActivity  extends AppCompatActivity {
     List<ServiceDetail> serviceList;
     List<ServiceCategory> serviceCategory;
     BottomNavigationView bottomNavigation;
-    private static final int NUM_PAGES = 3;
-    private ViewPager mPager;
-    private PagerAdapter pagerAdapter;
+
     ImageView notification;
     RecyclerView recyclerView;
 
+    ImageView homeImage;
+    String userEmail;
     DatabaseReference db;
 
     @Override
@@ -50,17 +52,18 @@ public class HomeActivity extends FragmentActivity implements FragmentOne.OnFrag
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity_main);
 
+        Intent i = getIntent();
+        userEmail = i.getStringExtra("userEmail");
 
-        mPager = (ViewPager) findViewById(R.id.pager);
-        pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
-        mPager.setAdapter(pagerAdapter);
 
         getIds();
         addListeners();
+        getHomeImage();
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         serviceList = new ArrayList<>();
         serviceCategory = new ArrayList<>();
+
 
         db = FirebaseDatabase.getInstance().getReference().child("Service");
 
@@ -75,16 +78,10 @@ public class HomeActivity extends FragmentActivity implements FragmentOne.OnFrag
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             for (DataSnapshot snapshot2 : dataSnapshot.getChildren()) {
-
-                                String title = snapshot2.child("title").getValue(String.class);
                                 String thumbnail = snapshot2.child("url").getValue(String.class);
-                                serviceList.add(new ServiceDetail(title,category,"Description",thumbnail));
-
-                                if(thumbnail!=null) {
-                                    serviceCategory.add(new ServiceCategory(category,thumbnail));
+                                if (thumbnail != null) {
+                                    serviceCategory.add(new ServiceCategory(category, thumbnail));
                                 }
-                                //
-
                             }
                         }
 
@@ -98,7 +95,7 @@ public class HomeActivity extends FragmentActivity implements FragmentOne.OnFrag
                 }
 
                 RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(HomeActivity.this, serviceCategory);
-                recyclerView.setLayoutManager(new GridLayoutManager(HomeActivity.this,2));
+                recyclerView.setLayoutManager(new GridLayoutManager(HomeActivity.this,3));
                 recyclerView.setAdapter(myAdapter);
 
             }
@@ -126,7 +123,9 @@ public class HomeActivity extends FragmentActivity implements FragmentOne.OnFrag
                         startActivity(new Intent(HomeActivity.this, BaeProfile.class));
                         break;
                     case R.id.navigation_account:
-                        startActivity(new Intent(HomeActivity.this,UserProfile.class));
+                        Intent intent = new Intent(HomeActivity.this,UserProfile.class);
+                        intent.putExtra("userEmail", userEmail);
+                        startActivity(intent);
                         break;
 
                 }
@@ -137,6 +136,22 @@ public class HomeActivity extends FragmentActivity implements FragmentOne.OnFrag
             }
         });
 
+    }
+
+    private void getHomeImage() {
+        homeImage = (ImageView) findViewById(R.id.displayProduct);
+        homeImage.setImageResource(R.drawable.baeproduct);
+
+        homeImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                intent.addCategory(Intent.CATEGORY_BROWSABLE);
+                intent.setData(Uri.parse("https://www.benebiomecosmetics.com/"));
+                startActivity(intent);
+            }
+        });
     }
 
     public void getIds()
@@ -156,38 +171,4 @@ public class HomeActivity extends FragmentActivity implements FragmentOne.OnFrag
         });
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
-    }
-
-
-    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-        public ScreenSlidePagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            if(position == 0)
-            {
-                return new FragmentOne();
-            }
-            else if (position == 1)
-            {
-                return new FragmentTwo();
-            }
-            else
-            {
-                return new FragmentThree();
-
-            }
-
-        }
-
-        @Override
-        public int getCount() {
-            return NUM_PAGES;
-        }
-    }
 }
