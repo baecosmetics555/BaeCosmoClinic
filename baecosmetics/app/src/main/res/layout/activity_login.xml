@@ -11,22 +11,26 @@
 
     <EditText
         android:id="@+id/email"
-        android:layout_centerHorizontal="true"
-        android:layout_width="250dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginBottom="29dp"
         android:hint="Email" />
 
     <EditText
         android:id="@+id/password"
-        android:layout_centerHorizontal="true"
-        android:layout_width="250dp"
-        android:inputType="textPassword"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/invalidLoginText"
-        android:layout_marginBottom="32dp"
-        android:hint="Password" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="33dp"
+        android:hint="Password"
+        android:inputType="textPassword" />
 
     <TextView
         android:id="@+id/invalidLoginText"
@@ -36,6 +40,8 @@
         android:layout_marginBottom="32dp"
         android:layout_centerHorizontal="true"
         android:textColor="#FF0000"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:textStyle="bold"
         android:text=""
         />
@@ -45,7 +51,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/registration"
-        android:layout_marginBottom="37dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/rounded_button_orange"
         android:text="Login" />
 
     <Button
@@ -53,7 +62,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="48dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="150dp"
+        android:background="@drawable/rounded_button_blue"
         android:text="Register" />
 
 </RelativeLayout>

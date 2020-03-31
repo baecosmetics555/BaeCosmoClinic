@@ -22,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText email,password;
     private Button login,registration;
     private TextView invalidLogin;
+    private String userEmail;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
@@ -38,7 +39,9 @@ public class LoginActivity extends AppCompatActivity {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();//whenever user logs in, this will be called
                 if (user != null){
                     System.out.println("<<<<<<<<<<<<UID" + user.getUid());
+                    userEmail = user.getEmail();
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    intent.putExtra("userEmail", userEmail);
                     startActivity(intent);
                     finish();
                     return;

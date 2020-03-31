@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.douglas.baecosmoclinic.adapter.RecyclerViewAdapter;
 import com.douglas.bean.ServiceCategory;
@@ -43,7 +44,7 @@ public class HomeActivity  extends AppCompatActivity {
     RecyclerView recyclerView;
 
     ImageView homeImage;
-
+    String userEmail;
     DatabaseReference db;
 
     @Override
@@ -51,6 +52,8 @@ public class HomeActivity  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity_main);
 
+        Intent i = getIntent();
+        userEmail = i.getStringExtra("userEmail");
 
 
         getIds();
@@ -75,22 +78,10 @@ public class HomeActivity  extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             for (DataSnapshot snapshot2 : dataSnapshot.getChildren()) {
-
-                                String title = snapshot2.child("title").getValue(String.class);
                                 String thumbnail = snapshot2.child("url").getValue(String.class);
-                                String description = "";
-                                if(snapshot2.child("description").exists()){
-                                    description = snapshot2.child("description").getValue(String.class);
-                                }else {
-                                    description = ""; }
-
-                                serviceList.add(new ServiceDetail(title,category,description,thumbnail));
-
-                                if(thumbnail!=null) {
-                                    serviceCategory.add(new ServiceCategory(category,thumbnail));
+                                if (thumbnail != null) {
+                                    serviceCategory.add(new ServiceCategory(category, thumbnail));
                                 }
-                                //
-
                             }
                         }
 
@@ -132,7 +123,9 @@ public class HomeActivity  extends AppCompatActivity {
                         startActivity(new Intent(HomeActivity.this, BaeProfile.class));
                         break;
                     case R.id.navigation_account:
-                        startActivity(new Intent(HomeActivity.this,UserProfile.class));
+                        Intent intent = new Intent(HomeActivity.this,UserProfile.class);
+                        intent.putExtra("userEmail", userEmail);
+                        startActivity(intent);
                         break;
 
                 }

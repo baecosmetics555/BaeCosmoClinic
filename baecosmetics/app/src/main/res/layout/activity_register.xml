@@ -14,6 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/passwordFromRegister"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginBottom="30dp"
         android:hint="Email" />
 
@@ -25,6 +27,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/confirmPasswordFromRegister"
         android:layout_marginBottom="3dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:hint="Password" />
 
     <EditText
@@ -33,6 +37,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/invalidRegisterText"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="32dp"
         android:hint="Confirm Password" />
@@ -45,16 +51,24 @@
         android:layout_marginBottom="32dp"
         android:layout_centerHorizontal="true"
         android:textColor="#FF0000"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:textStyle="bold"
         android:text=""
         />
 
     <Button
         android:id="@+id/registration"
-        android:layout_width="match_parent"
+        android:layout_width="276dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="194dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="171dp"
+        android:background="@drawable/rounded_button_blue"
+        android:foregroundGravity="center"
         android:text="Register" />
 
 </RelativeLayout>
