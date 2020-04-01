@@ -58,9 +58,7 @@ public class ServiceDetailActivity extends AppCompatActivity {
                     String title = dataSnapshot.child(count).child("title").getValue(String.class);
 
                     String description = dataSnapshot.child(count).child("description").getValue(String.class);
-                    if(description.equals("")||description==null) {
-                        description = "No details";
-                    }
+
                     String thumbnail = dataSnapshot.child("Thumbnail").child("url").getValue(String.class);
                     serviceList.add(new ServiceDetail(title, category, description, thumbnail));
                 }
