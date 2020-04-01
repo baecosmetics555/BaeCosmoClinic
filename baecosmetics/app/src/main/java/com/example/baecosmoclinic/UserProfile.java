@@ -21,6 +21,7 @@ public class UserProfile extends AppCompatActivity {
     private FirebaseAuth mAuth;
     String userEmail;
     TextView txtAccount;
+    Button btnManageProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,7 @@ public class UserProfile extends AppCompatActivity {
 //        userEmail = i.getStringExtra("userEmail");
 
         txtAccount = findViewById(R.id.txtAccount);
+        btnManageProfile = findViewById(R.id.btnEdit);
 
         String name = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         System.out.println("======================================" + name);
@@ -70,6 +72,14 @@ public class UserProfile extends AppCompatActivity {
 
                     //return;
                 }
+            }
+        });
+
+        btnManageProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UserProfile.this,ManageProfile.class);
+                startActivity(intent);
             }
         });
     }
