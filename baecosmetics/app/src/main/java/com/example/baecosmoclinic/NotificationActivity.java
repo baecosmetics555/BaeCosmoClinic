@@ -1,19 +1,9 @@
 package com.example.baecosmoclinic;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.Notification;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.douglas.baecosmoclinic.adapter.NotificationRecyclerAdapter;
-import com.douglas.baecosmoclinic.adapter.RecyclerViewAdapter;
 import com.douglas.bean.NotificationList;
-import com.douglas.bean.Service;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,6 +12,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class NotificationActivity extends AppCompatActivity {
 
