@@ -2,7 +2,7 @@ package com.bean;
 
 public class TimeSlots {
 
-String time, date, username;
+public String time, date, username;
 
     public TimeSlots(String time, String date, String username) {
         this.time = time;
