@@ -69,6 +69,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         viewAppointments = findViewById(R.id.viewAppointments);
         postSchedule = findViewById(R.id.postSchedule);
         sendNotitification = findViewById(R.id.sendNotifications);
+        seeNotification = findViewById(R.id.seeNotification);
     }
 
     public void setListeners(){
