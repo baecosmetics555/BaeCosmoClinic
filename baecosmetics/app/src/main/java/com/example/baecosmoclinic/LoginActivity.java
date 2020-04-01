@@ -1,6 +1,8 @@
 package com.example.baecosmoclinic;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText email,password;
     private Button login,registration;
     private TextView invalidLogin;
+    private String userEmail;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
@@ -37,8 +40,17 @@ public class LoginActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();//whenever user logs in, this will be called
                 if (user != null){
-                    System.out.println("<<<<<<<<<<<<UID" + user.getUid());
+
+                    System.out.println("<<<<<<<<<<<<UID" + user.getEmail());
+                    SharedPreferences sp = getSharedPreferences("userinfo" , Context.MODE_PRIVATE);
+                    sp.edit().putString("email",user.getEmail()).commit();
+
+
+
+                    userEmail = user.getEmail();
+
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    intent.putExtra("userEmail", userEmail);
                     startActivity(intent);
                     finish();
                     return;

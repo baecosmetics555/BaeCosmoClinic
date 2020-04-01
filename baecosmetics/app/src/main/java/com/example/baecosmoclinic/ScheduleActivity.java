@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.opengl.Visibility;
 import android.os.Build;
 import android.os.Bundle;
@@ -183,7 +185,32 @@ public class ScheduleActivity extends AppCompatActivity {
                 showTime();
                 showDate();
                 timePicker.setVisibility(View.GONE);
-                tvwTime.setText("Selected Time: "+ timePicker.getHour() +":"+ timePicker.getMinute()+" ");
+              //  tvwTime.setText("Selected Time: "+ timePicker.getHour() +":"+ timePicker.getMinute()+" ");
+
+
+                int hour, minute;
+                String am_pm;
+
+
+
+                if (Build.VERSION.SDK_INT >= 23 ){
+                    hour = timePicker.getHour();
+                    minute = timePicker.getMinute();
+                }
+                else{
+                    hour = timePicker.getCurrentHour();
+                    minute = timePicker.getCurrentMinute();
+                }
+                if(hour > 12) {
+                    am_pm = "PM";
+                    hour = hour - 12;
+                }
+                else
+                {
+                    am_pm="AM";
+                }
+
+                tvwTime.setText("Selected Time: "+ hour +":"+ minute + " " + am_pm);
 
             }
         });
@@ -197,11 +224,36 @@ public class ScheduleActivity extends AppCompatActivity {
                 .child(day).child("timeslots");
               //  mDatabaseReference.setValue("Donald Duck");
 
-String time = timePicker.getHour() +":"+ timePicker.getMinute()+" ";
+                int hour, minute;
+                String am_pm;
+
+
+
+                if (Build.VERSION.SDK_INT >= 23 ){
+                    hour = timePicker.getHour();
+                    minute = timePicker.getMinute();
+                }
+                else{
+                    hour = timePicker.getCurrentHour();
+                    minute = timePicker.getCurrentMinute();
+                }
+                if(hour > 12) {
+                    am_pm = "PM";
+                    hour = hour - 12;
+                }
+                else
+                {
+                    am_pm="AM";
+                }
+
+
+                String time = hour +":"+ minute+" " + am_pm;
 
 String date = picker.getDayOfMonth()+"/"+ (picker.getMonth() + 1)+"/"+picker.getYear();
 
-                TimeSlots user = new TimeSlots(time, date, "999");
+                SharedPreferences sp = getSharedPreferences("userinfo" , Context.MODE_PRIVATE);
+                String email  = sp.getString("email","null");
+                TimeSlots user = new TimeSlots(time.trim(), date.trim(), email.trim().split("@")[0]);
                // mDatabaseReference = mDatabase.getReference().child("user");
                 mDatabaseReference.setValue(user);
 

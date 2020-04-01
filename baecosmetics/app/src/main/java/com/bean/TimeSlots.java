@@ -2,13 +2,15 @@ package com.bean;
 
 public class TimeSlots {
 
-String time, date, uid;
+String time, date, username;
 
-
-    public TimeSlots(String time, String date, String uid) {
+    public TimeSlots(String time, String date, String username) {
         this.time = time;
-        this.date = uid;
-        this.uid = uid;
+        this.date = date;
+        this.username = username;
+    }
+
+    public TimeSlots() {
     }
 
     public String getTime() {
@@ -27,11 +29,11 @@ String time, date, uid;
         this.date = date;
     }
 
-    public String getUid() {
-        return uid;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

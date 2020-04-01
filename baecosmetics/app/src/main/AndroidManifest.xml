@@ -13,7 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity android:name=".PostSchedule"></activity>
+
         <activity android:name=".ServiceDetailActivity"></activity>
+
         <activity android:name=".UserProfile" />
         <activity
             android:name=".AdminHomeActivity"
@@ -43,8 +47,12 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".BaeProfile" />
+        <activity android:name=".ViewAppointmentsActivity" >
+
+        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
