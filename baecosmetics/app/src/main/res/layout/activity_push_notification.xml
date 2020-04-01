@@ -28,6 +28,8 @@
         android:id="@+id/btnPush"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btnPush"
-        android:onClick="sendNotication"/>
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_button_orange"
+        android:onClick="sendNotication"
+        android:text="@string/btnPush" />
 </LinearLayout>
