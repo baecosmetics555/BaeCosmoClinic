@@ -27,11 +27,13 @@
 
             <ImageView
                 android:id="@+id/logout"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="20dp"
+                android:foregroundGravity="right"
                 android:paddingRight="10dp"
                 android:src="@drawable/logout" />
-
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
 
@@ -40,7 +42,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="100dp"
+        android:layout_marginRight="20dp"
         android:orientation="horizontal">
 
         <Button
@@ -48,10 +52,8 @@
             android:layout_width="140dp"
             android:layout_height="110dp"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
+            android:layout_weight="1"
             android:background="@drawable/rounded_button_orange"
             android:text="Post  Dr' Schedule" />
 
@@ -62,9 +64,7 @@
             android:layout_below="@+id/sendNotifications"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
             android:background="@drawable/rounded_button_orange"
             android:text="View Appointment" />
 
@@ -72,7 +72,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:orientation="horizontal">
 
         <Button
@@ -81,10 +83,7 @@
             android:layout_height="110dp"
             android:layout_below="@+id/postSchedule"
             android:layout_centerHorizontal="true"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
             android:background="@drawable/rounded_button_orange"
             android:text="Send Notifications" />
 
@@ -95,9 +94,7 @@
             android:layout_below="@+id/sendNotifications"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
             android:background="@drawable/rounded_button_orange"
             android:text="See notification" />
     </LinearLayout>
