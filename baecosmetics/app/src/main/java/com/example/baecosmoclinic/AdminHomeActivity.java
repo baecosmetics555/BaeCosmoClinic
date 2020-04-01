@@ -25,6 +25,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_home);
         //getActionBar().hide();
 
+
         getIds();
         setListeners();
 
@@ -38,7 +39,6 @@ public class AdminHomeActivity extends AppCompatActivity {
                 startActivity(new Intent(AdminHomeActivity.this, PushNotificationActivity.class));
             }
         });
-
         seeNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +60,12 @@ public class AdminHomeActivity extends AppCompatActivity {
             }
         });
 
+        postSchedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AdminHomeActivity.this, PostScheduleActivity.class));
+            }
+        });
 
     }
 
