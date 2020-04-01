@@ -17,7 +17,7 @@ public class AdminHomeActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
-    Button postSchedule, viewAppointments, sendNotitification;
+    Button postSchedule, viewAppointments, sendNotitification, seeNotification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,13 @@ public class AdminHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(AdminHomeActivity.this, PushNotificationActivity.class));
+            }
+        });
+
+        seeNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AdminHomeActivity.this, NotificationActivity.class));
             }
         });
         logout.setOnClickListener(new View.OnClickListener() {

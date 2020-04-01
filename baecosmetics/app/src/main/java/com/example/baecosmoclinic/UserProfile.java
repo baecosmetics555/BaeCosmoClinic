@@ -26,17 +26,16 @@ public class UserProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
-
-//        Intent i = getIntent();
-//        userEmail = i.getStringExtra("userEmail");
+        Intent i = getIntent();
+       userEmail = i.getStringExtra("userEmail");
 
         txtAccount = findViewById(R.id.txtAccount);
 
-        String name = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-        System.out.println("======================================" + name);
-        txtAccount.setText(name);
+       // String name = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+      //  System.out.println("======================================" + name);
+     //   txtAccount.setText(name);
 
-        //txtAccount.setText(userEmail);
+        txtAccount.setText(userEmail);
 
         mAuth = FirebaseAuth.getInstance();
         logout = findViewById(R.id.logout);
