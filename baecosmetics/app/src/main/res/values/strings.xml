@@ -26,6 +26,29 @@
     <string name="contact_detail">Tel. (213) 384-7555\nFax. (213) 738-8798\n</string>
     <string name="title_activity_maps">Map</string>
     <string name="btnPush">Send Notification</string>
+    <string-array name="scheduleTime">
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
 
+    </string-array>
 
+    <string-array name="scheduleTime2">
+
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+    </string-array>
 </resources>
