@@ -43,18 +43,12 @@ public class RegisterActivity extends AppCompatActivity {
 //                    startActivity(intent);
 //                    finish();
                     //return;
-<<<<<<< HEAD
-=======
 
->>>>>>> 7507b6d444360a506a412085c3233c24ea1b1a4e
                     Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
                     startActivity(intent);
                     finish();
                     return;
-<<<<<<< HEAD
-=======
 
->>>>>>> 7507b6d444360a506a412085c3233c24ea1b1a4e
                 }
 
 //        firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
