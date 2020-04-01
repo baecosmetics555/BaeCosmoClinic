@@ -113,10 +113,18 @@ public class HomeActivity  extends AppCompatActivity {
                         startActivity(new Intent(HomeActivity.this, BaeProfile.class));
                         break;
                     case R.id.navigation_account:
-                        Intent intent = new Intent(HomeActivity.this,UserProfile.class);
-                        intent.putExtra("userEmail", userEmail);
-                        startActivity(intent);
-                        break;
+                        if(userEmail.equals("admin@admin.com")) {
+                            Intent intent = new Intent(HomeActivity.this,AdminHomeActivity.class);
+                            intent.putExtra("userEmail", userEmail);
+                            startActivity(intent);
+                            break;
+                        }
+                        else {
+                            Intent intent = new Intent(HomeActivity.this,UserProfile.class);
+                            intent.putExtra("userEmail", userEmail);
+                            startActivity(intent);
+                            break;
+                        }
 
                 }
 
