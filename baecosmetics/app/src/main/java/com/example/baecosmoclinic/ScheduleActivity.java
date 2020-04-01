@@ -58,6 +58,8 @@ public class ScheduleActivity extends AppCompatActivity {
 
     FloatingActionButton floatingActionButton;
 
+    Boolean empty = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -271,18 +273,18 @@ String date = picker.getDayOfMonth()+"/"+ (picker.getMonth() + 1)+"/"+picker.get
             @Override
             public void onClick(View view) {
 
-                final Boolean[] empty = new Boolean[10];
-                empty[0] = true;
+                  empty = true;
+                //empty[0] = true;
 
                 SharedPreferences sp = getSharedPreferences("userinfo" , Context.MODE_PRIVATE);
                 String email  = sp.getString("email","null");
                 final String usn=  email.trim().split("@")[0];
 
 
-                DatabaseReference mDatabaseReferenceN;
-                mDatabaseReferenceN = mDatabase.getReference().child("appointment").child("days");
+              //  DatabaseReference mDatabaseReferenceN;
+                mDatabaseReference = mDatabase.getReference().child("appointment").child("days");
 
-                mDatabaseReferenceN.addValueEventListener(new ValueEventListener() {
+                mDatabaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -296,24 +298,38 @@ String date = picker.getDayOfMonth()+"/"+ (picker.getMonth() + 1)+"/"+picker.get
 
                         if(friday.getUsername().equals(usn))
                         {
-                            empty[0] = false;
+                            empty = false;
                             booking = friday;}
                         else if(monday.getUsername().equals(usn))
                         {
-                            empty[0] = false;
+                            empty = false;
                             booking = monday;}
                         else if(tuesday.getUsername().equals(usn))
                         {
-                            empty[0] = false;
+                            empty = false;
                             booking = tuesday;}
                         else if(wednesday.getUsername().equals(usn))
                         {
-                            empty[0] = false;
+                            empty = false;
                             booking = wednesday;}
                         else if(thursday.getUsername().equals(usn))
                         {
-                            empty[0] = false;
+                            empty = false;
                             booking = thursday;}
+
+                        if(empty == true)
+                        {
+                            Snackbar snackbar = Snackbar
+                                    .make(findViewById(R.id.coordinatorLayout), "No Appointments Found", Snackbar.LENGTH_LONG);
+                            snackbar.show();
+
+                            //   startActivity(new Intent(ScheduleActivity.this, ViewClientAppointmentsActivity.class));
+
+
+                        }else {
+
+                            startActivity(new Intent(ScheduleActivity.this, ViewClientAppointmentsActivity.class));
+                        }
 
 
 
@@ -330,19 +346,7 @@ String date = picker.getDayOfMonth()+"/"+ (picker.getMonth() + 1)+"/"+picker.get
 
 
 
-            if(empty[0] == true)
-            {
-                Snackbar snackbar = Snackbar
-                        .make(findViewById(R.id.coordinatorLayout), "No Appointments Found", Snackbar.LENGTH_LONG);
-                snackbar.show();
 
-             //   startActivity(new Intent(ScheduleActivity.this, ViewClientAppointmentsActivity.class));
-
-
-            }else {
-
-                startActivity(new Intent(ScheduleActivity.this, ViewClientAppointmentsActivity.class));
-            }
             }
         });
 
