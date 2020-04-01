@@ -38,17 +38,15 @@ public class RegisterActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();//whenever user logs in, this will be called
                 if (user != null){
                     mAuth.signOut();
-<<<<<<< HEAD
+
 //                    Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
 //                    startActivity(intent);
 //                    finish();
                     //return;
-=======
                     Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
                     startActivity(intent);
                     finish();
                     return;
->>>>>>> 081ea3e7ed574e0131b49f87a1eeaad4cf9213ab
                 }
 
 //        firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
