@@ -28,7 +28,7 @@ public class UserProfile extends AppCompatActivity {
     private ImageView logout;
 
     private FirebaseAuth mAuth;
-    String userEmail;
+    //String userEmail;
     TextView txtAccount;
     Button btnManageProfile;
 
@@ -44,22 +44,22 @@ public class UserProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
         Intent i = getIntent();
-       userEmail = i.getStringExtra("userEmail");
+        //userEmail = i.getStringExtra("userEmail");
 
         txtAccount = findViewById(R.id.txtAccount);
         btnManageProfile = findViewById(R.id.btnEdit);
-        
+
         mDatabase = FirebaseDatabase.getInstance();
         mDatabaseReference = mDatabase.getReference();
 
         btnSeeAppoingment = findViewById(R.id.btnSeeAppoingment);
 
 
-       // String name = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-      //  System.out.println("======================================" + name);
-     //   txtAccount.setText(name);
+        String name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        System.out.println("======================================" + name);
+        txtAccount.setText(name);
 
-        txtAccount.setText(userEmail);
+        //txtAccount.setText(userEmail);
 
         mAuth = FirebaseAuth.getInstance();
         logout = findViewById(R.id.logout);

@@ -57,7 +57,7 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello, "
+            android:text="Hello "
             android:textSize="24sp" />
 
         <TextView
@@ -91,18 +91,9 @@
             android:layout_width="140dp"
             android:layout_height="110dp"
             android:layout_centerVertical="true"
-<<<<<<< HEAD
             android:layout_marginTop="20dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
-=======
-
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-
-
->>>>>>> 970062cf5af10cef3f101b146b825a1e41e0a63f
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:background="@drawable/rounded_button_blue"

@@ -1,5 +1,7 @@
 package com.example.baecosmoclinic;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -49,14 +51,41 @@ public class AdminHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();//whenever user logs in, this will be called
+
                 if (user != null){
-                    mAuth.signOut();
-                    Intent intent = new Intent(AdminHomeActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                    return;
+                    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch (which){
+                                case DialogInterface.BUTTON_POSITIVE:
+                                    mAuth.signOut();
+                                    Intent intent = new Intent(AdminHomeActivity.this, MainActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                    return;
+
+                                case DialogInterface.BUTTON_NEGATIVE:
+                                    //No button clicked
+                                    break;
+                            }
+                        }
+                    };
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(AdminHomeActivity.this);
+                    builder.setMessage("Are you sure you want to logout?").setPositiveButton("Yes", dialogClickListener)
+                            .setNegativeButton("No", dialogClickListener).show();
+
+                    //return;
                 }
-                //mAuth.signOut();
+
+//                if (user != null){
+//                    mAuth.signOut();
+//                    Intent intent = new Intent(AdminHomeActivity.this, MainActivity.class);
+//                    startActivity(intent);
+//                    finish();
+//                    return;
+//                }
+//                //mAuth.signOut();
             }
         });
 

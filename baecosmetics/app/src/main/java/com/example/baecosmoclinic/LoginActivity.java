@@ -45,8 +45,6 @@ public class LoginActivity extends AppCompatActivity {
                     SharedPreferences sp = getSharedPreferences("userinfo" , Context.MODE_PRIVATE);
                     sp.edit().putString("email",user.getEmail()).commit();
 
-
-
                     userEmail = user.getEmail();
 
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
@@ -95,6 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                     invalidLogin.setText("Please fill all required fields.");
                 }
                 else {
+                    mAuth.signOut();
                     mAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {

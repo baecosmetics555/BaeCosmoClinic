@@ -1,6 +1,5 @@
 package com.example.baecosmoclinic;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -15,13 +14,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText email,password,confirmPassword;
+    private EditText email,password,confirmPassword,displayName;
     private Button registration;
     private TextView validationText;
     private RelativeLayout relativeLayout;
@@ -36,20 +36,21 @@ public class RegisterActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance(); // get current state of the login state
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();//whenever user logs in, this will be called
-                if (user != null){
+                if (user != null) {
                     mAuth.signOut();
+                }
 
 //                    Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
 //                    startActivity(intent);
 //                    finish();
                     //return;
 
-                    Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
-                    startActivity(intent);
-                    finish();
-                    return;
+//                    Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+//                    startActivity(intent);
+//                    finish();
+//                    return;
 
-                }
+//                }
 
 //        firebaseAuthListener = new FirebaseAuth.AuthStateListener() {
 //            @Override
@@ -72,16 +73,15 @@ public class RegisterActivity extends AppCompatActivity {
         email = findViewById(R.id.emailFromRegister);
         password = findViewById(R.id.passwordFromRegister);
         confirmPassword = findViewById(R.id.confirmPasswordFromRegister);
+        displayName = findViewById(R.id.displayNameRegister);
         registration = findViewById(R.id.registration);
         validationText = findViewById(R.id.invalidRegisterText);
         relativeLayout = findViewById(R.id.relativeLayout);
 
-
-
-
-        registration.setOnClickListener(new View.OnClickListener() {
+           registration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final String userName = displayName.getText().toString();
                 final String userEmail = email.getText().toString();
                 final String userPassword = password.getText().toString();
                 final String userConfirmPassword = confirmPassword.getText().toString();
@@ -89,11 +89,13 @@ public class RegisterActivity extends AppCompatActivity {
                 {
                     validationText.setText("Please fill all required fields.");
                 }
-                else if(userPassword.trim().length()<6)
-                {validationText.setText("Please enter a password of at least 6 characters.");}
-                else{
+                else if(userPassword.trim().length()<6) {
+                    validationText.setText("Please enter a password of at least 6 characters.");
+                }
+                else {
                     if (userPassword.equals(userConfirmPassword)) {
-                        mAuth.createUserWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                        mAuth.createUserWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(
+                                RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (!task.isSuccessful()) {
@@ -103,15 +105,26 @@ public class RegisterActivity extends AppCompatActivity {
                                 }
                                 else {
                                     Toast.makeText(RegisterActivity.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
-                                    mAuth.signOut();
+                                    //mAuth.signOut();
                                     validationText.setText("Registration successful. Go back to login page to login");
                                     validationText.setTextColor(Color.GREEN);
+
+                                   FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                            .setDisplayName(userName)
+                                            .build();
+
+                                    user.updateProfile(profileUpdates)
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        Toast.makeText(RegisterActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
                                 }
-//                          else {
-//                          String userID = mAuth.getCurrentUser().getUid();
-//                          DatabaseReference currentUserDB = FirebaseDatabase.getInstance().getReference().child("Users").child("Customers").child(userID);
-//                          currentUserDB.setValue(true);
-//                          }
                             }
                         });
                     }
