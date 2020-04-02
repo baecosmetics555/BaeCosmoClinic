@@ -91,15 +91,11 @@
             android:layout_width="140dp"
             android:layout_height="110dp"
             android:layout_centerVertical="true"
-<<<<<<< HEAD
             android:layout_marginTop="20dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
-=======
-
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
->>>>>>> 3fb6d949fb80109bf8014f6e2ba7de8702178474
             android:background="@drawable/rounded_button_blue"
             android:text="manage your profile" />
     </LinearLayout>

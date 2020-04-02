@@ -47,14 +47,11 @@ public class UserProfile extends AppCompatActivity {
        userEmail = i.getStringExtra("userEmail");
 
         txtAccount = findViewById(R.id.txtAccount);
-<<<<<<< HEAD
         btnManageProfile = findViewById(R.id.btnEdit);
-=======
         mDatabase = FirebaseDatabase.getInstance();
         mDatabaseReference = mDatabase.getReference();
 
         btnSeeAppoingment = findViewById(R.id.btnSeeAppoingment);
->>>>>>> 3fb6d949fb80109bf8014f6e2ba7de8702178474
 
        // String name = FirebaseAuth.getInstance().getCurrentUser().getEmail();
       //  System.out.println("======================================" + name);
@@ -97,7 +94,6 @@ public class UserProfile extends AppCompatActivity {
             }
         });
 
-<<<<<<< HEAD
         btnManageProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,9 +101,6 @@ public class UserProfile extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-=======
-
-
 
         btnSeeAppoingment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -186,6 +179,5 @@ public class UserProfile extends AppCompatActivity {
 
 
 
->>>>>>> 3fb6d949fb80109bf8014f6e2ba7de8702178474
     }
 }
