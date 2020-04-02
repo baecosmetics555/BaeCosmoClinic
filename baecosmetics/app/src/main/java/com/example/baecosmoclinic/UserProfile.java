@@ -48,10 +48,12 @@ public class UserProfile extends AppCompatActivity {
 
         txtAccount = findViewById(R.id.txtAccount);
         btnManageProfile = findViewById(R.id.btnEdit);
+        
         mDatabase = FirebaseDatabase.getInstance();
         mDatabaseReference = mDatabase.getReference();
 
         btnSeeAppoingment = findViewById(R.id.btnSeeAppoingment);
+
 
        // String name = FirebaseAuth.getInstance().getCurrentUser().getEmail();
       //  System.out.println("======================================" + name);
