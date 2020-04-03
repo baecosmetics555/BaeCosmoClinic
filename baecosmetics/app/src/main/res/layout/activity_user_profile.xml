@@ -40,7 +40,9 @@
                 android:layout_marginRight="20dp"
                 android:foregroundGravity="right"
                 android:paddingRight="10dp"
-                android:src="@drawable/logout" />
+                android:src="@android:drawable/ic_lock_power_off"
+                app:srcCompat="@android:drawable/ic_lock_power_off"
+                tools:srcCompat="@android:drawable/ic_lock_power_off" />
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
 
