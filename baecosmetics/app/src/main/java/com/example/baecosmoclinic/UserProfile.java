@@ -122,6 +122,8 @@ public class UserProfile extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
+
+
                         TimeSlots friday =    dataSnapshot.child("friday").child("timeslots").getValue(TimeSlots.class);
                         TimeSlots monday =    dataSnapshot.child("monday").child("timeslots").getValue(TimeSlots.class);
                         TimeSlots tuesday =    dataSnapshot.child("tuesday").child("timeslots").getValue(TimeSlots.class);
@@ -161,9 +163,11 @@ public class UserProfile extends AppCompatActivity {
 
 
                         }else {
+                            if(booking!=null) {
+                                startActivity(new Intent(UserProfile.this, ViewClientAppointmentsActivity.class));
+                            }
 
-                            startActivity(new Intent(UserProfile.this, ViewClientAppointmentsActivity.class));
-                        }
+                            }
 
 
 

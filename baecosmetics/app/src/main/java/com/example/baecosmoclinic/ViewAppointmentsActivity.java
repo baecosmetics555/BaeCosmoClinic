@@ -16,6 +16,7 @@ import com.bean.TimeSlots;
 import com.douglas.baecosmoclinic.adapter.ScheduleRecyclerAdapter;
 import com.douglas.bean.DoctorSchedule;
 import com.douglas.bean.Service;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,6 +46,8 @@ public class ViewAppointmentsActivity extends AppCompatActivity {
     DatabaseReference mDatabaseReference;
     Appointment appointment;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +63,10 @@ public class ViewAppointmentsActivity extends AppCompatActivity {
 
 
         getData();
+
+
     }
+
 
 
 
@@ -76,6 +82,7 @@ public class ViewAppointmentsActivity extends AppCompatActivity {
     public void getIds()
     {
         recyclerView = findViewById(R.id.recyclerView);
+
 
 
 
@@ -105,11 +112,32 @@ public class ViewAppointmentsActivity extends AppCompatActivity {
                // System.out.println(">>>>>>>>>>>>>>>>>>>>>>" + friday.getTime());
 
                 serviceList = new ArrayList<>();
-                serviceList.add(new Service("Monday",monday.getDate() + " "  + monday.getTime() + "\n\n" +"username: " + monday.getUsername()  ,"",R.drawable.thevigitarian));
-                serviceList.add(new Service("Tuesday",tuesday.getDate() + " "  + tuesday.getTime() + "\n\n" +"username: "+ tuesday.getUsername() ,"Description book",R.drawable.thewildrobot));
-                serviceList.add(new Service("Wednesday",wednesday.getDate() + " "  + wednesday.getTime() + "\n\n" +"username: "+ wednesday.getUsername() ,"Description book",R.drawable.mariasemples));
-                serviceList.add(new Service("Thursday",thursday.getDate() + " "  + thursday.getTime() + "\n\n" +"username: "+ thursday.getUsername() ,"Description book",R.drawable.themartian));
-                serviceList.add(new Service("Friday",friday.getDate() + " "  + friday.getTime() + "\n\n" +"username: "+ friday.getUsername() ,"Description book",R.drawable.hediedwith));
+                serviceList.clear();
+                if(!monday.getUsername().equals("null"))
+                {
+                    serviceList.add(new Service("Monday",monday.getDate() + " "  + monday.getTime() + "\n\n" +"username: " + monday.getUsername()  ,"",R.drawable.thevigitarian));
+
+                }
+                if(!tuesday.getUsername().equals("null"))
+                {
+                    serviceList.add(new Service("Tuesday",tuesday.getDate() + " "  + tuesday.getTime() + "\n\n" +"username: "+ tuesday.getUsername() ,"Description book",R.drawable.thewildrobot));
+
+                }
+                if(!wednesday.getUsername().equals("null"))
+                {
+                    serviceList.add(new Service("Wednesday",wednesday.getDate() + " "  + wednesday.getTime() + "\n\n" +"username: "+ wednesday.getUsername() ,"Description book",R.drawable.mariasemples));
+
+                }
+                if(!thursday.getUsername().equals("null"))
+                {
+                    serviceList.add(new Service("Thursday",thursday.getDate() + " "  + thursday.getTime() + "\n\n" +"username: "+ thursday.getUsername() ,"Description book",R.drawable.themartian));
+
+                }
+                if(!friday.getUsername().equals("null"))
+                {
+                    serviceList.add(new Service("Friday",friday.getDate() + " "  + friday.getTime() + "\n\n" +"username: "+ friday.getUsername() ,"Description book",R.drawable.hediedwith));
+
+                }
 
 
                 ScheduleRecyclerAdapter myAdapter = new ScheduleRecyclerAdapter(ViewAppointmentsActivity.this,serviceList);

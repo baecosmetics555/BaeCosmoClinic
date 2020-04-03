@@ -1,17 +1,10 @@
 package com.example.baecosmoclinic;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.opengl.Visibility;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -20,7 +13,6 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.bean.TimeSlots;
-import com.douglas.baecosmoclinic.adapter.NotificationRecyclerAdapter;
 import com.douglas.baecosmoclinic.adapter.ScheduleRecyclerAdapter;
 import com.douglas.bean.DoctorSchedule;
 import com.douglas.bean.Service;
@@ -36,8 +28,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.HashMap;
 import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class ScheduleActivity extends AppCompatActivity {
     RecyclerView recyclerView;
@@ -56,7 +51,7 @@ public class ScheduleActivity extends AppCompatActivity {
     DatabaseReference mDatabaseReference;
     DoctorSchedule ds;
 
-    FloatingActionButton floatingActionButton;
+    //FloatingActionButton floatingActionButton;
 
     Boolean empty = true;
 
@@ -268,7 +263,7 @@ String date = picker.getDayOfMonth()+"/"+ (picker.getMonth() + 1)+"/"+picker.get
             }
         });
 
-
+/*
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -348,7 +343,7 @@ String date = picker.getDayOfMonth()+"/"+ (picker.getMonth() + 1)+"/"+picker.get
 
 
             }
-        });
+        });*/
 
     }
 
@@ -385,7 +380,7 @@ String date = picker.getDayOfMonth()+"/"+ (picker.getMonth() + 1)+"/"+picker.get
 
         btnBookIt= (Button)findViewById(R.id.btnBook);
 
-        floatingActionButton = findViewById(R.id.floatingActionButton);
+        //floatingActionButton = findViewById(R.id.floatingActionButton);
     }
 
     public void hideDate()
