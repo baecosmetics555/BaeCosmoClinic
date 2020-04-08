@@ -101,18 +101,22 @@
                         android:layout_marginRight="10dp"
                         android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/btnSaveProfile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Save Changes" />
+                        <Button
+                            android:id="@+id/btnSaveProfile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/rounded_button_gray"
+                            android:text="Save Changes" />
 
-                    <Button
-                        android:id="@+id/btnDeleteProfile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="110dp"
-                        android:text="Delete Profile" />
+                        <Button
+                            android:id="@+id/btnDeleteProfile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Delete Profile"
+                            android:background="@drawable/rounded_button_gray"/>
                     </LinearLayout>
 
                 </LinearLayout>
